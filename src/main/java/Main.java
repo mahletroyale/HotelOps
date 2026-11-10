@@ -1,28 +1,11 @@
 
 
 
-
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("=== ROOM TEST ===");
-
-        Room room = new Room(2, 124.00, false, false);
-
-        System.out.println("Available: " + room.isAvailable());
-
-        room.checkIn();
-        System.out.println("Available: " + room.isAvailable());
-
-        room.checkOut();
-        System.out.println("Available: " + room.isAvailable());
-
-        room.cleanRoom();
-        System.out.println("Available: " + room.isAvailable());
-
-
-        System.out.println("\n=== EMPLOYEE TEST ===");
+        System.out.println("=== EMPLOYEE TEST ===");
 
         Employee employee = new Employee(
                 101, "Sarah", "Front Desk", 20.00, 0
@@ -31,15 +14,39 @@ public class Main {
         employee.punchIn(9);
         employee.punchOut(17);
 
-        System.out.println("Regular Hours: " + employee.getRegularHours());
+        System.out.println("Total Pay: $" +
+                employee.getTotalPay());
 
-        System.out.println("Overtime Hours: " + employee.getOvertimeHours());
+        System.out.println("\n=== CURRENT TIME TEST ===");
 
-        System.out.println("Total Pay: $" + employee.getTotalPay());
+        employee.punchIn();
+        employee.punchOut();
 
-        employee.punchTimeCard(10);
-        employee.punchTimeCard(14);
 
-        System.out.println("Updated Hours: " + employee.getHoursWorked());
+        System.out.println("\n=== HOTEL TEST ===");
+        Hotel hotel = new Hotel("Sunset Hotel", 5, 10);
+
+        System.out.println("Hotel: " + hotel.getName());
+        System.out.println("Available Suites: " + hotel.getAvailableSuites());
+        System.out.println("Available Basic Rooms: " + hotel.getAvailableRooms());
+
+        boolean suiteBooking = hotel.bookRoom(2, true);
+        System.out.println("Suite Booking: " + suiteBooking);
+        boolean roomBooking = hotel.bookRoom(3, false);
+
+        System.out.println("Basic Room Booking: " + roomBooking);
+        System.out.println("Remaining Suites: " + hotel.getAvailableSuites());
+        System.out.println("Remaining Basic Rooms: " + hotel.getAvailableRooms());
+
+        boolean failedBooking = hotel.bookRoom(10, true);
+        System.out.println("Booking 10 Suites: " + failedBooking);
+
+
+
+        Hotel hotel2 = new Hotel("Ocean View Hotel", 8, 15, 3, 5);
+
+        System.out.println("Hotel: " + hotel2.getName());
+        System.out.println("Available Suites: " + hotel2.getAvailableSuites());
+        System.out.println("Available Basic Rooms: " + hotel2.getAvailableRooms());
     }
 }
